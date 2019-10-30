@@ -12,7 +12,7 @@ int main(){
   int fd;
   FILE *file;
   char *s="hello,world!\n";
-  if((fd=open("test.txt",O_WRONLY|O_CREAT,S_IRUSR|S_IWUSR))==-1){
+  if((fd=open("test1.txt",O_WRONLY|O_CREAT,S_IRUSR|S_IWUSR))==-1){
   cout<<"Error open file"<<endl;
   return -1;
 }
