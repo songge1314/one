@@ -38,13 +38,15 @@ int main()
     }
     else if(p2 == 0)
     {
-      waitpid(p1, &s1, 0);
+      waitpid(p1, NULL, 0);
       close(fd1[1]);
       close(fd2[0]);
+      int a = 0;
       while(1)
       {
+        a++;
         rn = read(fd1[0], rbuf, sizeof(rbuf));
-        printf("[child %d] read form pipe1!\n", getpid());
+        printf("[child %d] read form pipe1! %d\n", getpid(), a);
         write(fd2[1], rbuf, sizeof(rbuf));
         printf("[child %d] write to pipe2!\n", getpid());
         if(rn == 0)
@@ -68,12 +70,16 @@ int main()
       }
       else if(p3 == 0)
       {
-        waitpid(p1, &s1, 0);
+        close(fd1[0]);
+        close(fd1[1]);
+        waitpid(p2, NULL, 0);
         close(fd2[1]);
+        int b = 0;
         while(1)
         {
+          b++;
           rn = read(fd2[0], rbuf, sizeof(rbuf));
-          printf("[child %d] read %s form pipe2!\n", getpid(), rbuf);
+          printf("[child %d] read %s form pipe2! [%d]\n", getpid(), rbuf, b);
           if(rn == 0)
           {
             printf("[child2] read error!\n");
