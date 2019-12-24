@@ -2,22 +2,22 @@
 int A[ARRAY_SIZE];
 int B[ARRAY_SIZE];
 int maxnum;
-int max[ARRAY_NUM]={0};
+int max[ARRAY_NUM]={0,0};
 void *fun(void *param)
 {
 	int num = (int)param;
-	int i=0;
+	int i;
 	if(num == 0)
 	{
 		for(i=0;i<ARRAY_SIZE;i++)
 		{
-			max[num] = max[num]>A[i]?max[i]:A[i];
+			max[i] = max[i]>A[i]?max[i]:A[i];
 		}	
 	}else
 	{
 		for(i=0;i<ARRAY_SIZE;i++)
 		{
-			max[num] = max[num]>A[i]?max[i]:A[i];
+			max[i] = max[i]>B[i]?max[i]:B[i];
 		}
 	}
 	

@@ -8,6 +8,7 @@
 #include <sys/time.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <time.h>
 #define LOOP 10000000
 #define NUM 4
 #define TN 100
@@ -18,10 +19,11 @@
 void initarray(int *a,int n) 
 { 
         int i;
-	srand((int)time(0));
+	srand((unsigned)time(NULL));
 	for(i=0;i<n;i++)
 	{
-		a[i] = 1 + (int)(1000.0 * rand()/(RAND_MAX + 1.0));
+		a[i] = (rand()%1000);
+                //printf("a[%d]:%d\n",i,a[i]);
 	}
 
 }
